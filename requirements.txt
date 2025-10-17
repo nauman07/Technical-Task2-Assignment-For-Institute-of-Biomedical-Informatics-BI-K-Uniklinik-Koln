@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pydantic
+
+numpy
+faiss-cpu
+
+sentence-transformers>=2.2.2
+torch>=2.0.0
+
+rank-bm25
+rapidfuzz
+
+streamlit
+requests
+python-multipart

@@ -1,0 +1,24 @@
+services:
+  rag-api:
+    build: .
+    image: rag-minimal:latest
+    ports: ["8000:8000"]
+    command: ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
+    healthcheck:
+      test: ["CMD-SHELL", "python - <<'PY'\nimport urllib.request,sys\ntry:\n  urllib.request.urlopen('http://localhost:8000/health', timeout=2)\n  sys.exit(0)\nexcept Exception:\n  sys.exit(1)\nPY"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - ./data:/app/data
+
+  rag-gui:
+    build: .
+    image: rag-minimal:latest
+    depends_on:
+      rag-api:
+        condition: service_healthy
+    environment:
+      - API_URL=http://rag-api:8000
+    ports: ["8051:8051"]
+    command: ["streamlit","run","ui/streamlit_app.py","--server.port","8051"]
