@@ -109,9 +109,6 @@ Open http://localhost:8051 in your browser.
 | **GET** | `/health` | Returns API health status. |
 | **POST** | `/ingest/text` | Ingests inline text (JSON payload). |
 | **POST** | `/ingest/files` | Uploads and ingests small files. |
-| **POST** | `/ingest/start` | Begins background ingestion for large files (CSV, etc.). Returns a task ID. |
-| **GET** | `/ingest/status/{task_id}` | Polls the progress of a background ingestion task. |
-| **POST** | `/ingest/cancel/{task_id}` | Cancels an ongoing background ingestion task. |
 | **POST** | `/query` | Queries the knowledge base. Supports a `strict` flag for chatty/strict response modes. |
 
 ## How It Works
@@ -187,8 +184,6 @@ Response:
 
     * Ingest: upload files or paste text.
 
-    * Async Ingest: for large CSVs, shows live progress bar.
-
     * Query: type questions, toggle “Strict (context-only)” mode.
 
 * UI Behaviors
@@ -219,5 +214,6 @@ Response:
 * Hybrid retrieval + rerank balances recall and precision.
 
 * Extractive synthesis grounds every answer in real context.
+
 
 * Strict/chatty toggle separates factual QA from conversational polish.
