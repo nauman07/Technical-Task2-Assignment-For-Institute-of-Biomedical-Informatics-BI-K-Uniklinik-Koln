@@ -1,4 +1,3 @@
-# rag/retrieve.py
 from __future__ import annotations
 from typing import List, Dict, Any, Tuple
 import numpy as np
@@ -124,3 +123,4 @@ def retrieve(query: str, embedder, store, top_k: int = 5) -> Tuple[List[str], Li
     except Exception:
         # Last-resort safety: never propagate an exception to the endpoint
         return [], []
+
