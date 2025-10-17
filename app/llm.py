@@ -1,4 +1,3 @@
-# app/llm.py
 from __future__ import annotations
 from typing import List, Tuple
 import re
@@ -88,4 +87,5 @@ def _smalltalk_or_none(q: str) -> str | None:
         return "You’re welcome!"
     if ql in bye or any(ql.startswith(b + " ") for b in bye):
         return "Bye! If another question pops up, I’m here."
+
     return None
