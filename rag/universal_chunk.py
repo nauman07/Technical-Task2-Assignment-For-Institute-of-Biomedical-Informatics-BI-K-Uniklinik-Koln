@@ -1,4 +1,3 @@
-# rag/universal_chunk.py
 from __future__ import annotations
 from typing import List, Tuple, Dict
 import re
@@ -228,3 +227,4 @@ def make_chunks(
             clean.append((chunk, meta))
 
     return clean
+
