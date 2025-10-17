@@ -1,4 +1,3 @@
-# app/main.py (only showing the changed/important parts)
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 from typing import List, Optional
@@ -103,3 +102,4 @@ def query(req: QueryReq):
     for s in sources:
         s["cited"] = s.get("rank") in used
     return {"answer": answer, "sources": sources, "strict": req.strict}
+
