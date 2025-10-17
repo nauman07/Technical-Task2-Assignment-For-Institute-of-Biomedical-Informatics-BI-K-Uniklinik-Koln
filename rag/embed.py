@@ -1,4 +1,3 @@
-# rag/embed.py
 from __future__ import annotations
 import numpy as np
 from sentence_transformers import SentenceTransformer
@@ -65,3 +64,4 @@ class Embedder:
             convert_to_numpy=True, batch_size=32, show_progress_bar=False
         )
         return emb.astype("float32")
+
