@@ -89,7 +89,7 @@ This project implements a **Retrieval-Augmented Generation (RAG)** pipeline that
 ### Clone the repository
 
 ```bash
-git clone <https://github.com/nauman07/Technical-Task2-Assignment-For-Institute-of-Biomedical-Informatics-BI-K-Uniklinik-Koln.git>
+git clone https://github.com/nauman07/Technical-Task2-Assignment-For-Institute-of-Biomedical-Informatics-BI-K-Uniklinik-Koln.git
 cd <your-project-folder>
 ```
 ### Build and start
@@ -244,5 +244,6 @@ Response:
 
 
 * Strict/chatty toggle separates factual QA from conversational polish.
+
 
 
