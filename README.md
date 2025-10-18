@@ -95,7 +95,7 @@ cd <your-project-folder>
 ### Build and start
 
 ```bash
-docker compose up --build
+docker-compose up --build
 ```
 
 Services:
@@ -244,6 +244,7 @@ Response:
 
 
 * Strict/chatty toggle separates factual QA from conversational polish.
+
 
 
 
