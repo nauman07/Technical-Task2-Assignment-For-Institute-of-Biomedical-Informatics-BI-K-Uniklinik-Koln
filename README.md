@@ -1,6 +1,10 @@
 # Minimal RAG System - Universal Ingestion, Lightweight LLM, and Streamlit GUI
 
 This project implements a **Retrieval-Augmented Generation (RAG)** pipeline that can ingest text from almost any file type, convert it into meaningful semantic chunks, index it efficiently, and provide contextual or conversational answers through a **FastAPI backend** and **Streamlit web interface**.
+> Designed to be re-runnable on any machine with Docker.  
+> Uses open-source embeddings (`BAAI/bge-small-en-v1.5`) via SentenceTransformers.  
+> Lightweight FAISS vector store on local disk (`./data/index`).  
+> No commercial API keys needed.
 
 ---
 
@@ -52,25 +56,25 @@ This project implements a **Retrieval-Augmented Generation (RAG)** pipeline that
 
 ## Project Structure
 ```
-project-root/
-├── app/
-│ ├── main.py
-│ ├── llm.py
-│ ├── schemas.py
-│ ├── settings.py
-├── rag/
-│ ├── universal_chunk.py
-│ ├── embed.py
-│ ├── vectorstore.py
-│ ├── retrieve.py
-│ ├── rerank.py
-│ ├── ingest.py
-├── ui/
-│ ├── streamlit_app.py
-├── requirements.txt
-├── docker-compose.yml
-├── Dockerfile
-└── README.md
+├─ app/
+│ ├─ main.py # FastAPI app with /ingest and /query
+│ ├─ llm.py # Lightweight extractive answerer (no external model)
+│ ├─ schemas.py # Pydantic request/response models
+│ ├─ settings.py # Config (paths, model names)
+├─ rag/
+│ ├─ embed.py # SentenceTransformers wrapper (BGE/E5 query/passages formatting)
+│ ├─ vectorstore.py # FAISS index + metadata + BM25 lexical helper
+│ ├─ retrieve.py # Hybrid retrieval + RRF + simple rerank
+│ ├─ rerank.py # Cross-encoder hook (optional)
+│ ├─ ingest.py # Programmatic ingestion helpers
+│ ├─ universal_chunk.py # Structure-aware chunking pipeline
+├─ ui/
+│ └─ streamlit_app.py # Optional GUI (talks to FastAPI)
+├─ data/
+│ └─ index/ # FAISS index + metadata.jsonl (created/used at runtime)
+├─ Dockerfile
+├─ docker-compose.yml
+└─ README.md
 ```
 
 ---
@@ -217,3 +221,4 @@ Response:
 
 
 * Strict/chatty toggle separates factual QA from conversational polish.
+
