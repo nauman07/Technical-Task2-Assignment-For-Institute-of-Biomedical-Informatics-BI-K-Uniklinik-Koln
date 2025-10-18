@@ -218,6 +218,7 @@ Response:
     * Chatty mode handles greetings, small talk, and fallback.
 
     * Strict mode sticks to your ingested corpus.
+    * We also have a TOP-K variable which controls how many chunks from FAISS (vector search) or BM25 (lexical search) you want to consider as potentially relevant.
 
 ## Tech Stack
 
@@ -244,6 +245,7 @@ Response:
 
 
 * Strict/chatty toggle separates factual QA from conversational polish.
+
 
 
 
