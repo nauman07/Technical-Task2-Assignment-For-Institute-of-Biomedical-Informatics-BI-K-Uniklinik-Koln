@@ -139,7 +139,7 @@ Open http://localhost:8051 in your browser.
 
 * Answer Synthesis
 
-    * Extractive summarization fuses top sentences from top chunks.
+    * Extractive summarisation fuses top sentences from top chunks.
 
     * If strict mode is on and overlap < 2 tokens → answer: “I don’t know…”.
 
@@ -159,17 +159,40 @@ curl -X POST http://127.0.0.1:8000/ingest/text \
     "title": "About Me"
   }'
   ```
+For Windows PowerShell
+```bash
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/ingest/text" `
+  -Method POST `
+  -ContentType "application/json" `
+  -Body '{
+    "texts": ["Name: Nauman Khan\nRole: ML Engineer\nTeam: Applied AI\nEmployer: Acme Analytics"],   
+    "doc_id": "persona",
+    "title": "About Me"
+  }'
+```
+
   Response:
 ```json
 {"ingested_chunks": 1, "index_size": 1}
 ```
 
 ### B. Query
-```bash
+
 curl -X POST http://127.0.0.1:8000/query \
   -H "Content-Type: application/json" \
   -d '{"query": "Who are you?", "strict": false}'
 ```
+For Windows PowerShell
+```bash
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/query" `
+  -Method POST `
+  -ContentType "application/json" `
+  -Body '{
+    "query": "Who are you?",
+    "strict": false
+  }'
+```
+
 
 Response:
 ```json
@@ -192,7 +215,7 @@ Response:
 
 * UI Behaviors
 
-    * Chatty mode handles greetings, small talk, fallback.
+    * Chatty mode handles greetings, small talk, and fallback.
 
     * Strict mode sticks to your ingested corpus.
 
@@ -204,7 +227,7 @@ Response:
 | **Embeddings** | Semantic encoding of documents and queries into vector representations. | sentence-transformers ($\text{BGE-small}$) |
 | **Retrieval** | Executes Dense + Sparse Hybrid search to find relevant context. | `rank-bm25`, `rapidfuzz` |
 | **LLM Layer** | Performs Extractive synthesis and provides chatty logic for responses. | Custom |
-| **GUI** | Provides a web interface for user interaction and visualization. | Streamlit Dashboard (`streamlit`) |
+| **GUI** | Provides a web interface for user interaction and visualisation. | Streamlit Dashboard (`streamlit`) |
 | **Background Jobs** | Manages asynchronous ingestion tracking and large data processing. | Custom threading manager |
 
 ## Why It Works
@@ -217,8 +240,9 @@ Response:
 
 * Hybrid retrieval + rerank balances recall and precision.
 
-* Extractive synthesis grounds every answer in real context.
+* Extractive synthesis grounds every answer in a real context.
 
 
 * Strict/chatty toggle separates factual QA from conversational polish.
+
 
